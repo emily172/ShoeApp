@@ -1,4 +1,4 @@
-package ie.setu.shoeapp
+package ie.setu.shoeapp.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -25,9 +25,9 @@ class ShoeActivity : AppCompatActivity() {
             i("add Button Pressed")
 
             binding.btnAdd.setOnClickListener() {
-                val placemarkTitle = binding.shoeTitle.text.toString()
-                if (placemarkTitle.isNotEmpty()) {
-                    i("add Button Pressed: $placemarkTitle")
+                val shoeTitle = binding.shoeTitle.text.toString()
+                if (shoeTitle.isNotEmpty()) {
+                    i("add Button Pressed: $shoeTitle")
                 }
                 else {
                     Snackbar
