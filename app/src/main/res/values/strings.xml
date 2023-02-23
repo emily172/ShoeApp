@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">ShoeApp</string>
     <string name="button_addShoe">Add Shoe</string>
+    <string name="hint_shoeTitle">Shoe Title</string>
 
 </resources>
+
+
+
