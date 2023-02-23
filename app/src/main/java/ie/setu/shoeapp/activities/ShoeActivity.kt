@@ -4,12 +4,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import ie.setu.shoeapp.databinding.ActivityShoeBinding
+import ie.setu.shoeapp.models.ShoeModel
 import timber.log.Timber
 import timber.log.Timber.i
 
 class ShoeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityShoeBinding
+    var shoe = ShoeModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
