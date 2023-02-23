@@ -12,9 +12,7 @@ import timber.log.Timber.i
 class ShoeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityShoeBinding
     var shoe = ShoeModel()
-
-    var app : MainApp? = null
-
+    lateinit var app: MainApp
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,10 +25,10 @@ class ShoeActivity : AppCompatActivity() {
             shoe.title = binding.shoeTitle.text.toString()
             shoe.description = binding.description.text.toString()
             if (shoe.title.isNotEmpty()) {
-                app!!.shoes.add(shoe.copy())
+                app.shoes.add(shoe.copy())
                 i("add Button Pressed: ${shoe}")
-                for (i in app!!.shoes.indices)
-                { i("Shoe[$i]:${this.app!!.shoes[i]}") }
+                for (i in app.shoes.indices)
+                { i("Placemark[$i]:${this.app.shoes[i]}") }
             }
             else {
                 Snackbar.make(it,"Please Enter a title", Snackbar.LENGTH_LONG)
@@ -39,4 +37,5 @@ class ShoeActivity : AppCompatActivity() {
         }
     }
 }
+
 
