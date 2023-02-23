@@ -23,6 +23,7 @@ class ShoeActivity : AppCompatActivity() {
 
         binding.btnAdd.setOnClickListener() {
             shoe.title = binding.shoeTitle.text.toString()
+            shoe.description = binding.description.text.toString()
             if (shoe.title.isNotEmpty()) {
                 shoes.add(shoe.copy())
                 i("add Button Pressed: ${shoe}")
