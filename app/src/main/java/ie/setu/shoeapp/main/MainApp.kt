@@ -6,11 +6,16 @@ import timber.log.Timber.i
 
 
 class MainApp : Application() {
-lateinit var shoes:ArrayList<ShoeModel>
+     val shoes= ArrayList<ShoeModel>()
+
     override fun onCreate() {
         super.onCreate()
-        shoes = ArrayList<ShoeModel>()
         Timber.plant(Timber.DebugTree())
-        i("Shoe started")
+        i("Shoes started")
+         shoes.add(ShoeModel("One", "About one..."))
+         shoes.add(ShoeModel("Two", "About two..."))
+         shoes.add(ShoeModel("Three", "About three..."))
     }
 }
+
+
