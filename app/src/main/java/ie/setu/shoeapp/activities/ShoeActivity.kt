@@ -19,6 +19,9 @@ class ShoeActivity : AppCompatActivity() {
         binding = ActivityShoeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.toolbarAdd.title = title
+        setSupportActionBar(binding.toolbarAdd)
+
         app = application as MainApp
         i("Shoe Activity started...")
         binding.btnAdd.setOnClickListener() {
