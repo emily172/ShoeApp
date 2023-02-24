@@ -27,9 +27,13 @@ class ShoeActivity : AppCompatActivity() {
             if (shoe.title.isNotEmpty()) {
                 app.shoes.add(shoe.copy())
                 i("add Button Pressed: ${shoe}")
-                for (i in app.shoes.indices)
-                { i("Placemark[$i]:${this.app.shoes[i]}") }
-            }
+                for (i in app.shoes.indices) {
+                    i("Shoe[$i]:${this.app.shoes[i]}")
+                }
+
+            setResult(RESULT_OK)
+            finish()
+        }
             else {
                 Snackbar.make(it,"Please Enter a title", Snackbar.LENGTH_LONG)
                     .show()

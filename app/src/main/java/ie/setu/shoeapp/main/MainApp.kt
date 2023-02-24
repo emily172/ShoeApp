@@ -12,9 +12,9 @@ class MainApp : Application() {
         super.onCreate()
         Timber.plant(Timber.DebugTree())
         i("Shoes started")
-         shoes.add(ShoeModel("One", "About one..."))
-         shoes.add(ShoeModel("Two", "About two..."))
-         shoes.add(ShoeModel("Three", "About three..."))
+        // shoes.add(ShoeModel("One", "About one..."))
+       //  shoes.add(ShoeModel("Two", "About two..."))
+       //  shoes.add(ShoeModel("Three", "About three..."))
     }
 }
 
