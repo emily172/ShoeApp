@@ -2,7 +2,9 @@ package ie.setu.shoeapp.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import com.google.android.material.snackbar.Snackbar
+import ie.setu.shoeapp.R
 import ie.setu.shoeapp.databinding.ActivityShoeBinding
 import ie.setu.shoeapp.main.MainApp
 import ie.setu.shoeapp.models.ShoeModel
@@ -43,6 +45,12 @@ class ShoeActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_shoe, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
 }
 
 
