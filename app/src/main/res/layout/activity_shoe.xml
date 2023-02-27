@@ -68,11 +68,11 @@
                     android:textSize="14sp" />
 
                 <EditText
-                    android:id="@+id/size"
+                    android:id="@+id/price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    android:hint="Size"
+                    android:hint="Price"
                     android:inputType="text"
                     android:maxLength="25"
                     android:maxLines="1"

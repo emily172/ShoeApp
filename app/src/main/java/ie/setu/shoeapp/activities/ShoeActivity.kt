@@ -38,6 +38,7 @@ class ShoeActivity : AppCompatActivity() {
             //add new fields here
             shoe.title = binding.shoeTitle.text.toString()
             shoe.description = binding.description.text.toString()
+            shoe.price = binding.price.text.toString().toDouble()
             shoe.shoecolor = binding.colorSpinner.selectedItem.toString()
 
 
