@@ -3,6 +3,7 @@
     <string name="button_addShoe">Add Shoe</string>
     <string name="hint_shoeTitle">Shoe Title</string>
     <string name="hint_shoeDescription">Description </string>
+    <string name="hint_shoePrice">Price</string>
     <string name="menu_addShoe">Add</string>
     <string name="menu_cancelShoe">Cancel</string>
     <string-array name="colors_array">
