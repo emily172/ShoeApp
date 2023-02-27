@@ -1,7 +1,12 @@
 package ie.setu.shoeapp.adapters
 
+import android.R
+import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ie.setu.shoeapp.databinding.CardShoeBinding
 import ie.setu.shoeapp.models.ShoeModel
@@ -16,6 +21,7 @@ class ShoeAdapter constructor(private var shoes: List<ShoeModel>) :
         return MainHolder(binding)
     }
 
+
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
         val shoe = shoes[holder.adapterPosition]
         holder.bind(shoe)
@@ -29,6 +35,7 @@ class ShoeAdapter constructor(private var shoes: List<ShoeModel>) :
         fun bind(shoe: ShoeModel) {
             binding.shoeTitle.text = shoe.title
             binding.description.text = shoe.description
+            binding.color.text = shoe.shoecolor
         }
     }
 }

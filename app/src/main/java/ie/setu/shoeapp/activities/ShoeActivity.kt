@@ -4,6 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 import ie.setu.shoeapp.R
 import ie.setu.shoeapp.databinding.ActivityShoeBinding
@@ -14,6 +19,7 @@ import timber.log.Timber.i
 
 class ShoeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityShoeBinding
+
     var shoe = ShoeModel()
     lateinit var app: MainApp
 
@@ -28,8 +34,13 @@ class ShoeActivity : AppCompatActivity() {
         app = application as MainApp
         i("Shoe Activity started...")
         binding.btnAdd.setOnClickListener() {
+
+            //add new fields here
             shoe.title = binding.shoeTitle.text.toString()
             shoe.description = binding.description.text.toString()
+            shoe.shoecolor = binding.colorSpinner.selectedItem.toString()
+
+
             if (shoe.title.isNotEmpty()) {
                 app.shoes.add(shoe.copy())
                 i("add Button Pressed: ${shoe}")
@@ -44,7 +55,22 @@ class ShoeActivity : AppCompatActivity() {
                 Snackbar.make(it,"Please Enter a title", Snackbar.LENGTH_LONG)
                     .show()
             }
+
+
         }
+        val spinner: Spinner = binding.colorSpinner
+// Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.colors_array,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner
+            spinner.adapter = adapter
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

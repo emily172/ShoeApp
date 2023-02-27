@@ -29,5 +29,13 @@
             android:layout_below="@id/shoeTitle"
             tools:text="A Description" />
 
+        <TextView
+            android:id="@+id/color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_below="@id/description"
+            tools:text="A Color" />
+
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

@@ -5,6 +5,16 @@
     <string name="hint_shoeDescription">Description </string>
     <string name="menu_addShoe">Add</string>
     <string name="menu_cancelShoe">Cancel</string>
+    <string-array name="colors_array">
+        <item>Red</item>
+        <item>Yellow</item>
+        <item>Orange</item>
+        <item>Purple</item>
+        <item>Green</item>
+        <item>Pink</item>
+        <item>Brown</item>
+        <item>Blue</item>
+    </string-array>
 
 </resources>
 
