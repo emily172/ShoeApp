@@ -9,6 +9,11 @@
     <color name="white">#FFFFFFFF</color>
     <color name="colorPrimary">#FFFFFF</color>
     <color name="colorPrimaryDark">#000000</color>
-    <color name="colorAccent">#4c90af</color>
+    <color name="colorAccent">#ff9be4</color>
 
+    //New Colors
+    <color name="shockingpink">#E638D6</color>
+    <color name ="darkpurple">#7B3BB0</color>
+    <color name = "lightpink">#ff9be4</color>
+    <color name ="indigo">#4B0082</color>
 </resources>
