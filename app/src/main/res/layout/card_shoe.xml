@@ -40,11 +40,20 @@
             tools:text="A Price" />
 
         <TextView
+            android:id="@+id/size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/shoeTitle"
+            android:layout_marginTop="44dp"
+            android:textColor="@color/black"
+            tools:text="A Size" />
+
+        <TextView
             android:id="@+id/color"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/description"
-            android:layout_marginTop="23dp"
+            android:layout_marginTop="50dp"
             android:textColor="@color/black"
             tools:text="A Color" />
 
