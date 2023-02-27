@@ -35,7 +35,8 @@ class ShoeAdapter constructor(private var shoes: List<ShoeModel>) :
         fun bind(shoe: ShoeModel) {
             binding.shoeTitle.text = shoe.title
             binding.description.text = shoe.description
-            binding.price.text = "€" + shoe.price.toString()
+            binding.price.text = "\u20AC" + shoe.price.toString()
+            //binding.size.text = shoe.size
             binding.color.text = shoe.shoecolor
         }
     }
