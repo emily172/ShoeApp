@@ -52,7 +52,8 @@ class ShoeActivity : AppCompatActivity() {
             binding.description.setText(shoe.description)
             binding.price.setText(shoe.price.toString())
             binding.size.setText(shoe.size.toString())
-
+            //added binding
+            binding.btnAdd.setText(getString(R.string.button_editShoe))
             binding.colorSpinner.setSelection(resources.getStringArray(R.array.colors_array).indexOf(shoe.shoecolor))
 
         }

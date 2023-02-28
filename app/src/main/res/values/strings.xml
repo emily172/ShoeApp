@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">ShoeApp</string>
     <string name="button_addShoe">Add Shoe</string>
+    //updated an edit shoe
+    <string name="button_editShoe">Edit Shoe</string>
     <string name="hint_shoeTitle">Shoe Title</string>
     <string name="hint_shoeDescription">Description </string>
     <string name="hint_shoePrice">Price</string>
