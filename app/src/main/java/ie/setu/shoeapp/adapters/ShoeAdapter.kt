@@ -11,7 +11,13 @@ import androidx.recyclerview.widget.RecyclerView
 import ie.setu.shoeapp.databinding.CardShoeBinding
 import ie.setu.shoeapp.models.ShoeModel
 
-class ShoeAdapter constructor(private var shoes: List<ShoeModel>) :
+
+interface ShoeListener {
+    fun onShoeClick(shoe: ShoeModel)
+}
+
+
+class ShoeAdapter constructor(private var shoes: List<ShoeModel>,  private val listener: ShoeListener) :
         RecyclerView.Adapter<ShoeAdapter.MainHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
@@ -24,7 +30,7 @@ class ShoeAdapter constructor(private var shoes: List<ShoeModel>) :
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
         val shoe = shoes[holder.adapterPosition]
-        holder.bind(shoe)
+        holder.bind(shoe, listener)
     }
 
     override fun getItemCount(): Int = shoes.size
@@ -32,12 +38,14 @@ class ShoeAdapter constructor(private var shoes: List<ShoeModel>) :
     class MainHolder(private val binding : CardShoeBinding) :
             RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(shoe: ShoeModel) {
+        fun bind(shoe: ShoeModel, listener:ShoeListener) {
             binding.shoeTitle.text = shoe.title
             binding.description.text = shoe.description
             binding.price.text = "\u20AC" + shoe.price.toString()
             binding.size.text = "UK" + shoe.size.toString()
             binding.color.text = shoe.shoecolor
+            binding.root.setOnClickListener { listener.onShoeClick(shoe) }
+
         }
     }
 }
