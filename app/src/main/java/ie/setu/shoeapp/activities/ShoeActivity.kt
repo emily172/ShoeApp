@@ -68,16 +68,11 @@ class ShoeActivity : AppCompatActivity() {
 
 
                 if (shoe.title.isNotEmpty()) {
-                    app.shoes.create(shoe.copy())
-
-                  /*  if (shoe.title.isEmpty())
+                    if(intent.hasExtra("shoe_edit"))
                         app.shoes.update(shoe.copy())
+                    else
+                        app.shoes.create(shoe.copy())
 
-                    i("update Button Pressed: ${shoe}")
-                    for (i in app.shoes {
-                        i("Shoe[$i]:${this.app.shoes.shoes[i]}")
-                    }
-*/
                     i("add Button Pressed: ${shoe}")
                     for (i in app.shoes.findAll().indices) {
                         i("Shoe[$i]:${this.app.shoes.shoes[i]}")
