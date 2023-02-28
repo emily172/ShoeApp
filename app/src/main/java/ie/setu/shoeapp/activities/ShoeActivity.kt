@@ -32,10 +32,29 @@ class ShoeActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbarAdd)
 
         app = application as MainApp
+        val spinner: Spinner = binding.colorSpinner
+// Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.colors_array,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner
+            spinner.adapter = adapter
+        }
         i("Shoe Activity started...")
         if (intent.hasExtra("shoe_edit")) {
             shoe = intent.extras?.getParcelable("shoe_edit")!!
+            //added in return data once clicked
             binding.shoeTitle.setText(shoe.title)
+            binding.description.setText(shoe.description)
+            binding.price.setText(shoe.price.toString())
+            binding.size.setText(shoe.size.toString())
+
+            binding.colorSpinner.setSelection(resources.getStringArray(R.array.colors_array).indexOf(shoe.shoecolor))
+
         }
 
             binding.btnAdd.setOnClickListener() {
@@ -50,6 +69,15 @@ class ShoeActivity : AppCompatActivity() {
 
                 if (shoe.title.isNotEmpty()) {
                     app.shoes.create(shoe.copy())
+
+                  /*  if (shoe.title.isEmpty())
+                        app.shoes.update(shoe.copy())
+
+                    i("update Button Pressed: ${shoe}")
+                    for (i in app.shoes {
+                        i("Shoe[$i]:${this.app.shoes.shoes[i]}")
+                    }
+*/
                     i("add Button Pressed: ${shoe}")
                     for (i in app.shoes.findAll().indices) {
                         i("Shoe[$i]:${this.app.shoes.shoes[i]}")
@@ -65,18 +93,7 @@ class ShoeActivity : AppCompatActivity() {
 
             }
 
-        val spinner: Spinner = binding.colorSpinner
-// Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter.createFromResource(
-            this,
-            R.array.colors_array,
-            android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            // Specify the layout to use when the list of choices appears
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            // Apply the adapter to the spinner
-            spinner.adapter = adapter
-        }
+
 
     }
 
