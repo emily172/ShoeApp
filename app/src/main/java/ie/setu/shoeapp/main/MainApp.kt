@@ -9,8 +9,8 @@ import timber.log.Timber.i
 
 class MainApp : Application() {
 
-     val shoes= ArrayList<ShoeModel>()
-    //val shoes = ShoeMemStore()
+     //val shoes= ArrayList<ShoeModel>()
+    val shoes = ShoeMemStore()
 
 
     override fun onCreate() {
