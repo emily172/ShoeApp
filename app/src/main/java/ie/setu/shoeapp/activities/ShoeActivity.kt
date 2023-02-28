@@ -33,33 +33,38 @@ class ShoeActivity : AppCompatActivity() {
 
         app = application as MainApp
         i("Shoe Activity started...")
-        binding.btnAdd.setOnClickListener() {
+        if (intent.hasExtra("shoe_edit")) {
+            shoe = intent.extras?.getParcelable("shoe_edit")!!
+            binding.shoeTitle.setText(shoe.title)
+        }
 
-            //add new fields here
-            shoe.title = binding.shoeTitle.text.toString()
-            shoe.description = binding.description.text.toString()
-            shoe.price = binding.price.text.toString().toDouble()
-            shoe.size = binding.size.text.toString().toInt()
-            shoe.shoecolor = binding.colorSpinner.selectedItem.toString()
+            binding.btnAdd.setOnClickListener() {
+
+                //add new fields here
+                shoe.title = binding.shoeTitle.text.toString()
+                shoe.description = binding.description.text.toString()
+                shoe.price = binding.price.text.toString().toDouble()
+                shoe.size = binding.size.text.toString().toInt()
+                shoe.shoecolor = binding.colorSpinner.selectedItem.toString()
 
 
-            if (shoe.title.isNotEmpty()) {
-                app.shoes.add(shoe.copy())
-                i("add Button Pressed: ${shoe}")
-                for (i in app.shoes.indices) {
-                    i("Shoe[$i]:${this.app.shoes[i]}")
+                if (shoe.title.isNotEmpty()) {
+                    app.shoes.create(shoe.copy())
+                    i("add Button Pressed: ${shoe}")
+                    for (i in app.shoes.findAll().indices) {
+                        i("Shoe[$i]:${this.app.shoes.shoes[i]}")
+                    }
+
+                    setResult(RESULT_OK)
+                    finish()
+                } else {
+                    Snackbar.make(it, "Please Enter a title", Snackbar.LENGTH_LONG)
+                        .show()
                 }
 
-            setResult(RESULT_OK)
-            finish()
-        }
-            else {
-                Snackbar.make(it,"Please Enter a title", Snackbar.LENGTH_LONG)
-                    .show()
+
             }
 
-
-        }
         val spinner: Spinner = binding.colorSpinner
 // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter.createFromResource(

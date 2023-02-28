@@ -9,11 +9,14 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
 import ie.setu.shoeapp.R
 import ie.setu.shoeapp.adapters.ShoeAdapter
+import ie.setu.shoeapp.adapters.ShoeListener
 import ie.setu.shoeapp.databinding.ActivityShoeListBinding
 import ie.setu.shoeapp.main.MainApp
+import ie.setu.shoeapp.models.ShoeModel
 
 
-class ShoeListActivity : AppCompatActivity() {
+class ShoeListActivity : AppCompatActivity(), ShoeListener {
+
 
     lateinit var app: MainApp
     private lateinit var binding: ActivityShoeListBinding
@@ -29,7 +32,9 @@ class ShoeListActivity : AppCompatActivity() {
 
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
-        binding.recyclerView.adapter = ShoeAdapter(app.shoes)
+        binding.recyclerView.adapter = ShoeAdapter(app.shoes.findAll(), this)
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -46,13 +51,28 @@ class ShoeListActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onShoeClick(shoe: ShoeModel) {
+        val launcherIntent = Intent(this, ShoeActivity::class.java)
+        launcherIntent.putExtra("shoe_edit", shoe)
+        getClickResult.launch(launcherIntent)
+    }
+    private val getClickResult =
+        registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) {
+            if (it.resultCode == Activity.RESULT_OK) {
+                (binding.recyclerView.adapter)?.
+                notifyItemRangeChanged(0,app.shoes.findAll().size)
+            }
+        }
+
     private val getResult =
         registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) {
             if (it.resultCode == Activity.RESULT_OK) {
                 (binding.recyclerView.adapter)?.
-                notifyItemRangeChanged(0,app.shoes.size)
+                notifyItemRangeChanged(0,app.shoes.findAll().size)
             }
         }
 }
