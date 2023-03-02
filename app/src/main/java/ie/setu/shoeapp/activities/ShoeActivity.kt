@@ -1,5 +1,6 @@
 package ie.setu.shoeapp.activities
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -23,6 +24,7 @@ class ShoeActivity : AppCompatActivity() {
     var shoe = ShoeModel()
     lateinit var app: MainApp
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityShoeBinding.inflate(layoutInflater)
