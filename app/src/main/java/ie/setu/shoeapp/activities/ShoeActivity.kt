@@ -54,42 +54,48 @@ class ShoeActivity : AppCompatActivity() {
             binding.size.setText(shoe.size.toString())
             //added binding
             binding.btnAdd.setText(getString(R.string.button_editShoe))
-            binding.colorSpinner.setSelection(resources.getStringArray(R.array.colors_array).indexOf(shoe.shoecolor))
+            binding.colorSpinner.setSelection(
+                resources.getStringArray(R.array.colors_array).indexOf(shoe.shoecolor)
+            )
 
         }
 
-            binding.btnAdd.setOnClickListener() {
+        binding.btnAdd.setOnClickListener() {
+            if (binding.shoeTitle.text.toString().isNotEmpty() && binding.price.text.toString().isNotEmpty()) {
+                (binding.shoeTitle.text.toString().isNotEmpty() && binding.shoeTitle.text.toString().isNotEmpty())
+                (binding.shoeTitle.text.toString().isNotEmpty() && binding.size.text.toString().isNotEmpty())
+                (binding.shoeTitle.text.toString().isNotEmpty() && binding.colorSpinner.selectedItem.toString().isNotEmpty())
+            //add new fields here
+            shoe.title = binding.shoeTitle.text.toString()
+            shoe.description = binding.description.text.toString()
+            shoe.price = binding.price.text.toString().toDouble()
+            shoe.size = binding.size.text.toString().toInt()
+            shoe.shoecolor = binding.colorSpinner.selectedItem.toString()
 
-                //add new fields here
-                shoe.title = binding.shoeTitle.text.toString()
-                shoe.description = binding.description.text.toString()
-                shoe.price = binding.price.text.toString().toDouble()
-                shoe.size = binding.size.text.toString().toInt()
-                shoe.shoecolor = binding.colorSpinner.selectedItem.toString()
 
 
-                if (shoe.title.isNotEmpty()) {
-                    if(intent.hasExtra("shoe_edit"))
-                        app.shoes.update(shoe.copy())
-                    else
-                        app.shoes.create(shoe.copy())
+                if (intent.hasExtra("shoe_edit"))
+                    app.shoes.update(shoe.copy())
+                else
+                    app.shoes.create(shoe.copy())
 
-                    i("add Button Pressed: ${shoe}")
-                    for (i in app.shoes.findAll().indices) {
-                        i("Shoe[$i]:${this.app.shoes.shoes[i]}")
-                    }
-
-                    setResult(RESULT_OK)
-                    finish()
-                } else {
-                    Snackbar.make(it, "Please Enter a title", Snackbar.LENGTH_LONG)
-                        .show()
+                i("add Button Pressed: ${shoe}")
+                for (i in app.shoes.findAll().indices) {
+                    i("Shoe[$i]:${this.app.shoes.shoes[i]}")
                 }
 
+                setResult(RESULT_OK)
+                //store
+                finish()
+            } else {
+                Snackbar
+                    .make(it, R.string.enter_shoe_title, Snackbar.LENGTH_LONG)
+                    .show()
 
             }
 
 
+        }
 
     }
 

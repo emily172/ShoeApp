@@ -20,6 +20,9 @@
         <item>Blue</item>
     </string-array>
 
+    //add in enter shoe listener
+    <string name="enter_shoe_title"> Please enter a Shoe Title </string>
+
 </resources>
 
 
