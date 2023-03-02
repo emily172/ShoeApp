@@ -1,6 +1,9 @@
 package ie.setu.shoeapp.models
 
+import ie.setu.shoeapp.persistence.JSONSerializer
+import ie.setu.shoeapp.persistence.Serializer
 import timber.log.Timber.i
+import java.io.File
 
 var lastId = 0L
 
@@ -9,8 +12,8 @@ internal fun getId(): Long {
 }
 
 class ShoeMemStore : ShoeStore {
-
-    val shoes = ArrayList<ShoeModel>()
+    private var serializer: Serializer = JSONSerializer(File("shoes.xml"))
+    var shoes = ArrayList<ShoeModel>()
 
     override fun findAll(): List<ShoeModel> {
         return shoes
@@ -21,8 +24,9 @@ class ShoeMemStore : ShoeStore {
         shoe.id = getId()
         shoes.add(shoe)
         logAll()
-    }
+        store()
 
+    }
 
 
     override fun update(shoe: ShoeModel) {
@@ -33,12 +37,25 @@ class ShoeMemStore : ShoeStore {
             foundShoe.price = shoe.price
             foundShoe.size = shoe.size
             foundShoe.shoecolor = shoe.shoecolor
+            // store()
             logAll()
         }
     }
 
 
     fun logAll() {
-        shoes.forEach{ i("$it") }
+        shoes.forEach { i("$it") }
     }
+
+
+    @Throws(Exception::class)
+    fun load() {
+        shoes = serializer.read() as ArrayList<ShoeModel>
+    }
+
+    @Throws(Exception::class)
+    fun store() {
+        serializer.write(shoes)
+    }
+
 }

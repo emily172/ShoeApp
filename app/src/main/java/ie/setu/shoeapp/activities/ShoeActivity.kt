@@ -1,8 +1,12 @@
 package ie.setu.shoeapp.activities
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
+import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -63,16 +67,32 @@ class ShoeActivity : AppCompatActivity() {
         }
 
         binding.btnAdd.setOnClickListener() {
-            if (binding.shoeTitle.text.toString().isNotEmpty() && binding.price.text.toString().isNotEmpty()) {
-                (binding.shoeTitle.text.toString().isNotEmpty() && binding.shoeTitle.text.toString().isNotEmpty())
-                (binding.shoeTitle.text.toString().isNotEmpty() && binding.size.text.toString().isNotEmpty())
-                (binding.shoeTitle.text.toString().isNotEmpty() && binding.colorSpinner.selectedItem.toString().isNotEmpty())
-            //add new fields here
-            shoe.title = binding.shoeTitle.text.toString()
-            shoe.description = binding.description.text.toString()
-            shoe.price = binding.price.text.toString().toDouble()
-            shoe.size = binding.size.text.toString().toInt()
-            shoe.shoecolor = binding.colorSpinner.selectedItem.toString()
+            if (binding.shoeTitle.text.toString().isNotEmpty() && binding.price.text.toString()
+                    .isNotEmpty()
+            ) {
+                (binding.shoeTitle.text.toString().isNotEmpty() && binding.shoeTitle.text.toString()
+                    .isNotEmpty())
+                (binding.shoeTitle.text.toString().isNotEmpty() && binding.size.text.toString()
+                    .isNotEmpty())
+                (binding.shoeTitle.text.toString()
+                    .isNotEmpty() && binding.colorSpinner.selectedItem.toString().isNotEmpty())
+                //add new fields here
+                shoe.title = binding.shoeTitle.text.toString()
+                shoe.description = binding.description.text.toString()
+                shoe.price = binding.price.text.toString().toDouble()
+                shoe.size = binding.size.text.toString().toInt()
+                shoe.shoecolor = binding.colorSpinner.selectedItem.toString()
+
+
+
+                if(Environment.isExternalStorageManager())
+                {
+
+                }else {
+                    val intent = Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)
+                    intent.data = Uri.parse("package" + packageName)
+                    startActivity(intent)
+                }
 
 
 
@@ -87,7 +107,7 @@ class ShoeActivity : AppCompatActivity() {
                 }
 
                 setResult(RESULT_OK)
-                //store
+                //store()
                 finish()
             } else {
                 Snackbar
@@ -96,10 +116,10 @@ class ShoeActivity : AppCompatActivity() {
 
             }
 
-
         }
 
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_shoe, menu)

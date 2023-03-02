@@ -17,12 +17,15 @@ interface ShoeListener {
 }
 
 
-class ShoeAdapter constructor(private var shoes: List<ShoeModel>,  private val listener: ShoeListener) :
-        RecyclerView.Adapter<ShoeAdapter.MainHolder>() {
+class ShoeAdapter constructor(
+    private var shoes: List<ShoeModel>,
+    private val listener: ShoeListener
+) :
+    RecyclerView.Adapter<ShoeAdapter.MainHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
         val binding = CardShoeBinding
-                .inflate(LayoutInflater.from(parent.context), parent, false)
+            .inflate(LayoutInflater.from(parent.context), parent, false)
 
         return MainHolder(binding)
     }
@@ -35,10 +38,10 @@ class ShoeAdapter constructor(private var shoes: List<ShoeModel>,  private val l
 
     override fun getItemCount(): Int = shoes.size
 
-    class MainHolder(private val binding : CardShoeBinding) :
-            RecyclerView.ViewHolder(binding.root) {
+    class MainHolder(private val binding: CardShoeBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(shoe: ShoeModel, listener:ShoeListener) {
+        fun bind(shoe: ShoeModel, listener: ShoeListener) {
             binding.shoeTitle.text = shoe.title
             binding.description.text = shoe.description
             binding.price.text = "\u20AC" + shoe.price.toString()

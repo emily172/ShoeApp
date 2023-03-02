@@ -1,4 +1,5 @@
 package ie.setu.shoeapp.activities
+
 import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -41,6 +42,7 @@ class ShoeListActivity : AppCompatActivity(), ShoeListener {
         menuInflater.inflate(R.menu.menu_main, menu)
         return super.onCreateOptionsMenu(menu)
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.item_add -> {
@@ -56,13 +58,13 @@ class ShoeListActivity : AppCompatActivity(), ShoeListener {
         launcherIntent.putExtra("shoe_edit", shoe)
         getClickResult.launch(launcherIntent)
     }
+
     private val getClickResult =
         registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) {
             if (it.resultCode == Activity.RESULT_OK) {
-                (binding.recyclerView.adapter)?.
-                notifyItemRangeChanged(0,app.shoes.findAll().size)
+                (binding.recyclerView.adapter)?.notifyItemRangeChanged(0, app.shoes.findAll().size)
             }
         }
 
@@ -71,8 +73,7 @@ class ShoeListActivity : AppCompatActivity(), ShoeListener {
             ActivityResultContracts.StartActivityForResult()
         ) {
             if (it.resultCode == Activity.RESULT_OK) {
-                (binding.recyclerView.adapter)?.
-                notifyItemRangeChanged(0,app.shoes.findAll().size)
+                (binding.recyclerView.adapter)?.notifyItemRangeChanged(0, app.shoes.findAll().size)
             }
         }
 }
