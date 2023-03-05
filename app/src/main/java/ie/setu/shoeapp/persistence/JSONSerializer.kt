@@ -1,6 +1,6 @@
 package ie.setu.shoeapp.persistence
 
-
+//JSON file added as storage for all shoes
 import android.os.Environment
 import com.thoughtworks.xstream.XStream
 import com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver

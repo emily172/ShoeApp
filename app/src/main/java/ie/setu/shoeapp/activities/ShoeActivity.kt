@@ -39,7 +39,7 @@ class ShoeActivity : AppCompatActivity() {
 
         app = application as MainApp
         val spinner: Spinner = binding.colorSpinner
-// Create an ArrayAdapter using the string array and a default spinner layout
+       // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter.createFromResource(
             this,
             R.array.colors_array,
@@ -66,6 +66,7 @@ class ShoeActivity : AppCompatActivity() {
 
         }
 
+        //binding added to listener when item isNotEmpty
         binding.btnAdd.setOnClickListener() {
             if (binding.shoeTitle.text.toString().isNotEmpty() && binding.price.text.toString()
                     .isNotEmpty()
@@ -76,6 +77,7 @@ class ShoeActivity : AppCompatActivity() {
                     .isNotEmpty())
                 (binding.shoeTitle.text.toString()
                     .isNotEmpty() && binding.colorSpinner.selectedItem.toString().isNotEmpty())
+
                 //add new fields here
                 shoe.title = binding.shoeTitle.text.toString()
                 shoe.description = binding.description.text.toString()
@@ -84,7 +86,7 @@ class ShoeActivity : AppCompatActivity() {
                 shoe.shoecolor = binding.colorSpinner.selectedItem.toString()
 
 
-
+              //Resolved java.io.FileNotFoundException: /storage/emulated/0/file.xlsx: open failed: EPERM (Operation not permitted) error
                 if(Environment.isExternalStorageManager())
                 {
 
@@ -119,7 +121,6 @@ class ShoeActivity : AppCompatActivity() {
         }
 
     }
-
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_shoe, menu)
