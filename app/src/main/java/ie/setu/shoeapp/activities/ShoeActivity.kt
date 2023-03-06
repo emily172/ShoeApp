@@ -42,6 +42,7 @@ class ShoeActivity : AppCompatActivity() {
 
         app = application as MainApp
         val spinner: Spinner = binding.colorSpinner
+        registerImagePickerCallback()
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter.createFromResource(
             this,
@@ -118,17 +119,12 @@ class ShoeActivity : AppCompatActivity() {
                     .show()
 
             }
-           //trigger the picker
-            binding.chooseImage.setOnClickListener {
-                showImagePicker(imageIntentLauncher)
-            }
 
 
-
-            binding.chooseImage.setOnClickListener {
-                i("Select image")
-            }
-
+        }
+        //trigger the picker
+        binding.chooseImage.setOnClickListener {
+            showImagePicker(imageIntentLauncher)
         }
 
     }
