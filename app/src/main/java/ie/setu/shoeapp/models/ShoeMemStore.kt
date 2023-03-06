@@ -12,7 +12,7 @@ internal fun getId(): Long {
 }
 
 class ShoeMemStore : ShoeStore {
-    private var serializer: Serializer = JSONSerializer(File("shoes.xml"))
+    private var serializer: Serializer = JSONSerializer(File("shoes2.xml"))
     var shoes = ArrayList<ShoeModel>()
 
     override fun findAll(): List<ShoeModel> {
