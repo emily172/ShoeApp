@@ -68,6 +68,9 @@ class ShoeActivity : AppCompatActivity() {
             binding.colorSpinner.setSelection(
                 resources.getStringArray(R.array.colors_array).indexOf(shoe.shoecolor)
             )
+            Picasso.get()
+                .load(shoe.image)
+                .into(binding.shoeImage)
 
         }
 
