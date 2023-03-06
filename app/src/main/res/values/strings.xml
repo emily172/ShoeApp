@@ -26,6 +26,9 @@
     //add button image string
     <string name="button_addImage"> Add Image </string>
 
+    //add select shoe image
+    <string name="select_shoe_image">Select shoe image</string>
+
 
 </resources>
 

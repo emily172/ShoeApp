@@ -14,9 +14,12 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.material.snackbar.Snackbar
 import ie.setu.shoeapp.R
 import ie.setu.shoeapp.databinding.ActivityShoeBinding
+import ie.setu.shoeapp.helpers.showImagePicker
 import ie.setu.shoeapp.main.MainApp
 import ie.setu.shoeapp.models.ShoeModel
 import timber.log.Timber
@@ -24,7 +27,7 @@ import timber.log.Timber.i
 
 class ShoeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityShoeBinding
-
+    private lateinit var imageIntentLauncher : ActivityResultLauncher<Intent>
     var shoe = ShoeModel()
     lateinit var app: MainApp
 
@@ -39,7 +42,7 @@ class ShoeActivity : AppCompatActivity() {
 
         app = application as MainApp
         val spinner: Spinner = binding.colorSpinner
-       // Create an ArrayAdapter using the string array and a default spinner layout
+        // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter.createFromResource(
             this,
             R.array.colors_array,
@@ -86,16 +89,14 @@ class ShoeActivity : AppCompatActivity() {
                 shoe.shoecolor = binding.colorSpinner.selectedItem.toString()
 
 
-              //Resolved java.io.FileNotFoundException: /storage/emulated/0/file.xlsx: open failed: EPERM (Operation not permitted) error
-                if(Environment.isExternalStorageManager())
-                {
+                //Resolved java.io.FileNotFoundException: /storage/emulated/0/file.xlsx: open failed: EPERM (Operation not permitted) error
+                if (Environment.isExternalStorageManager()) {
 
-                }else {
+                } else {
                     val intent = Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)
                     intent.data = Uri.parse("package" + packageName)
                     startActivity(intent)
                 }
-
 
 
                 if (intent.hasExtra("shoe_edit"))
@@ -117,6 +118,16 @@ class ShoeActivity : AppCompatActivity() {
                     .show()
 
             }
+           //trigger the picker
+            binding.chooseImage.setOnClickListener {
+                showImagePicker(imageIntentLauncher)
+            }
+
+
+
+            binding.chooseImage.setOnClickListener {
+                i("Select image")
+            }
 
         }
 
@@ -136,6 +147,20 @@ class ShoeActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    private fun registerImagePickerCallback() {
+        imageIntentLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+            { result ->
+                when(result.resultCode){
+                    RESULT_OK -> {
+                        if (result.data != null) {
+                            i("Got Result ${result.data!!.data}")
+                        } // end of if
+                    }
+                    RESULT_CANCELED -> { } else -> { }
+                }
+            }
+    }
 
 }
 
