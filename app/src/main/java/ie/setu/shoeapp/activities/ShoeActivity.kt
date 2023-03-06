@@ -14,9 +14,12 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.material.snackbar.Snackbar
 import ie.setu.shoeapp.R
 import ie.setu.shoeapp.databinding.ActivityShoeBinding
+import ie.setu.shoeapp.helpers.showImagePicker
 import ie.setu.shoeapp.main.MainApp
 import ie.setu.shoeapp.models.ShoeModel
 import timber.log.Timber
@@ -24,7 +27,7 @@ import timber.log.Timber.i
 
 class ShoeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityShoeBinding
-
+    private lateinit var imageIntentLauncher : ActivityResultLauncher<Intent>
     var shoe = ShoeModel()
     lateinit var app: MainApp
 
@@ -115,6 +118,13 @@ class ShoeActivity : AppCompatActivity() {
                     .show()
 
             }
+           //trigger the picker
+            binding.chooseImage.setOnClickListener {
+                showImagePicker(imageIntentLauncher)
+            }
+
+
+
             binding.chooseImage.setOnClickListener {
                 i("Select image")
             }
@@ -137,6 +147,20 @@ class ShoeActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    private fun registerImagePickerCallback() {
+        imageIntentLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+            { result ->
+                when(result.resultCode){
+                    RESULT_OK -> {
+                        if (result.data != null) {
+                            i("Got Result ${result.data!!.data}")
+                        } // end of if
+                    }
+                    RESULT_CANCELED -> { } else -> { }
+                }
+            }
+    }
 
 }
 
