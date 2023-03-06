@@ -37,6 +37,8 @@ class ShoeMemStore : ShoeStore {
             foundShoe.price = shoe.price
             foundShoe.size = shoe.size
             foundShoe.shoecolor = shoe.shoecolor
+            //added image update to store
+            foundShoe.image=shoe.image
             // store()
             logAll()
         }
