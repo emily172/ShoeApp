@@ -17,6 +17,7 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.material.snackbar.Snackbar
+import com.squareup.picasso.Picasso
 import ie.setu.shoeapp.R
 import ie.setu.shoeapp.databinding.ActivityShoeBinding
 import ie.setu.shoeapp.helpers.showImagePicker
@@ -27,7 +28,7 @@ import timber.log.Timber.i
 
 class ShoeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityShoeBinding
-    private lateinit var imageIntentLauncher : ActivityResultLauncher<Intent>
+    private lateinit var imageIntentLauncher: ActivityResultLauncher<Intent>
     var shoe = ShoeModel()
     lateinit var app: MainApp
 
@@ -147,19 +148,21 @@ class ShoeActivity : AppCompatActivity() {
         imageIntentLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult())
             { result ->
-                when(result.resultCode){
+                when (result.resultCode) {
                     RESULT_OK -> {
                         if (result.data != null) {
                             i("Got Result ${result.data!!.data}")
                             shoe.image = result.data!!.data!!
+                            Picasso.get()
+                                .load(shoe.image)
+                                .into(binding.shoeImage)
                         } // end of if
                     }
-                    RESULT_CANCELED -> { } else -> { }
+                    RESULT_CANCELED -> {}
+                    else -> {}
                 }
             }
     }
-
-
 }
 
 
