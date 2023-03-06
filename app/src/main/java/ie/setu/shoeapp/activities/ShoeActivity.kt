@@ -39,7 +39,7 @@ class ShoeActivity : AppCompatActivity() {
 
         app = application as MainApp
         val spinner: Spinner = binding.colorSpinner
-       // Create an ArrayAdapter using the string array and a default spinner layout
+        // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter.createFromResource(
             this,
             R.array.colors_array,
@@ -86,16 +86,14 @@ class ShoeActivity : AppCompatActivity() {
                 shoe.shoecolor = binding.colorSpinner.selectedItem.toString()
 
 
-              //Resolved java.io.FileNotFoundException: /storage/emulated/0/file.xlsx: open failed: EPERM (Operation not permitted) error
-                if(Environment.isExternalStorageManager())
-                {
+                //Resolved java.io.FileNotFoundException: /storage/emulated/0/file.xlsx: open failed: EPERM (Operation not permitted) error
+                if (Environment.isExternalStorageManager()) {
 
-                }else {
+                } else {
                     val intent = Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)
                     intent.data = Uri.parse("package" + packageName)
                     startActivity(intent)
                 }
-
 
 
                 if (intent.hasExtra("shoe_edit"))
@@ -116,6 +114,9 @@ class ShoeActivity : AppCompatActivity() {
                     .make(it, R.string.enter_shoe_title, Snackbar.LENGTH_LONG)
                     .show()
 
+            }
+            binding.chooseImage.setOnClickListener {
+                i("Select image")
             }
 
         }
