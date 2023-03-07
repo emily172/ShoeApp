@@ -12,7 +12,7 @@ internal fun getId(): Long {
 }
 
 class ShoeMemStore : ShoeStore {
-    private var serializer: Serializer = JSONSerializer(File("shoes2.xml"))
+    private var serializer: Serializer = JSONSerializer(File("shoes4.xml"))
     var shoes = ArrayList<ShoeModel>()
 
     override fun findAll(): List<ShoeModel> {
@@ -41,6 +41,7 @@ class ShoeMemStore : ShoeStore {
             foundShoe.image=shoe.image
             // store()
             logAll()
+            store()
         }
     }
 
@@ -53,6 +54,9 @@ class ShoeMemStore : ShoeStore {
     @Throws(Exception::class)
     fun load() {
         shoes = serializer.read() as ArrayList<ShoeModel>
+        i("LOAD")
+        logAll()
+        lastId = shoes.maxOf {it.id }+1
     }
 
     @Throws(Exception::class)

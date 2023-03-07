@@ -68,9 +68,11 @@ class ShoeActivity : AppCompatActivity() {
             binding.colorSpinner.setSelection(
                 resources.getStringArray(R.array.colors_array).indexOf(shoe.shoecolor)
             )
-            Picasso.get()
-                .load(shoe.image)
-                .into(binding.shoeImage)
+            if(shoe.image.isNotEmpty()) {
+                Picasso.get()
+                    .load(Uri.parse(shoe.image))
+                    .into(binding.shoeImage)
+            }
 
         }
 
@@ -155,7 +157,7 @@ class ShoeActivity : AppCompatActivity() {
                     RESULT_OK -> {
                         if (result.data != null) {
                             i("Got Result ${result.data!!.data}")
-                            shoe.image = result.data!!.data!!
+                            shoe.image = result.data!!.data!!.toString()
                             Picasso.get()
                                 .load(shoe.image)
                                 .into(binding.shoeImage)

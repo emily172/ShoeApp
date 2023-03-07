@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ie.setu.shoeapp.databinding.CardShoeBinding
 import ie.setu.shoeapp.models.ShoeModel
+import timber.log.Timber.i
 
 
 interface ShoeListener {
@@ -33,6 +34,8 @@ class ShoeAdapter constructor(
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
         val shoe = shoes[holder.adapterPosition]
+        i("BIND HERE")
+        i(shoe.toString())
         holder.bind(shoe, listener)
     }
 
