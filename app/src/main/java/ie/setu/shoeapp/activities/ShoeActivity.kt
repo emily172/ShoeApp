@@ -137,6 +137,11 @@ class ShoeActivity : AppCompatActivity() {
             showImagePicker(imageIntentLauncher)
         }
 
+        binding.shoeLocation.setOnClickListener {
+            i ("Enable the Location Pressed")
+        }
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

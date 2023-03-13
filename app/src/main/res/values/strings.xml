@@ -32,6 +32,8 @@
     // change the shoe image
     <string name="change_shoe_image">Change shoe image</string>
 
+    // set location
+    <string name="button_location">Add a Shoe Location</string>
 
 </resources>
 
