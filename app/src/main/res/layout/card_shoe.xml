@@ -21,6 +21,19 @@
             tools:text="A Title" />
 
 
+        <ImageView
+            android:id="@+id/imageIcon"
+            android:layout_width="116dp"
+            android:layout_height="89dp"
+            android:layout_alignRight="@id/shoeTitle"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="141dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="52dp"
+            android:layout_marginRight="-257dp"
+            android:layout_toEndOf="@+id/shoeTitle"
+            android:contentDescription="@string/change_shoe_image" />
+
         <TextView
             android:id="@+id/description"
             android:layout_width="wrap_content"
