@@ -8,8 +8,10 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import ie.setu.shoeapp.databinding.CardShoeBinding
 import ie.setu.shoeapp.models.ShoeModel
+import timber.log.Timber.i
 
 
 interface ShoeListener {
@@ -33,6 +35,8 @@ class ShoeAdapter constructor(
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
         val shoe = shoes[holder.adapterPosition]
+        i("BIND HERE")
+        i(shoe.toString())
         holder.bind(shoe, listener)
     }
 
@@ -47,6 +51,7 @@ class ShoeAdapter constructor(
             binding.price.text = "\u20AC" + shoe.price.toString()
             binding.size.text = "UK" + shoe.size.toString()
             binding.color.text = shoe.shoecolor
+            Picasso.get().load(shoe.image).resize(200,200).into(binding.imageIcon)
             binding.root.setOnClickListener { listener.onShoeClick(shoe) }
 
         }

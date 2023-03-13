@@ -17,6 +17,8 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.material.snackbar.Snackbar
+import com.squareup.picasso.MemoryPolicy
+import com.squareup.picasso.NetworkPolicy
 import com.squareup.picasso.Picasso
 import ie.setu.shoeapp.R
 import ie.setu.shoeapp.databinding.ActivityShoeBinding
@@ -68,6 +70,13 @@ class ShoeActivity : AppCompatActivity() {
             binding.colorSpinner.setSelection(
                 resources.getStringArray(R.array.colors_array).indexOf(shoe.shoecolor)
             )
+            if(shoe.image.isNotEmpty()) {
+                Picasso.get()
+                    .load(Uri.parse(shoe.image))
+                    //.memoryPolicy(MemoryPolicy.NO_CACHE)
+                    //.networkPolicy(NetworkPolicy.NO_CACHE)
+                    .into(binding.shoeImage)
+            }
 
         }
 
@@ -152,10 +161,11 @@ class ShoeActivity : AppCompatActivity() {
                     RESULT_OK -> {
                         if (result.data != null) {
                             i("Got Result ${result.data!!.data}")
-                            shoe.image = result.data!!.data!!
+                            shoe.image = result.data!!.data!!.toString()
                             Picasso.get()
                                 .load(shoe.image)
                                 .into(binding.shoeImage)
+                            binding.chooseImage.setText(R.string.change_shoe_image)
                         } // end of if
                     }
                     RESULT_CANCELED -> {}

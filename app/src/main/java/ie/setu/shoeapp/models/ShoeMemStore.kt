@@ -12,7 +12,7 @@ internal fun getId(): Long {
 }
 
 class ShoeMemStore : ShoeStore {
-    private var serializer: Serializer = JSONSerializer(File("shoes2.xml"))
+    private var serializer: Serializer = JSONSerializer(File("shoes4.xml"))
     var shoes = ArrayList<ShoeModel>()
 
     override fun findAll(): List<ShoeModel> {
@@ -28,7 +28,7 @@ class ShoeMemStore : ShoeStore {
 
     }
 
-
+/*
     override fun update(shoe: ShoeModel) {
         var foundShoe: ShoeModel? = shoes.find { p -> p.id == shoe.id }
         if (foundShoe != null) {
@@ -37,8 +37,25 @@ class ShoeMemStore : ShoeStore {
             foundShoe.price = shoe.price
             foundShoe.size = shoe.size
             foundShoe.shoecolor = shoe.shoecolor
-            // store()
-            logAll()
+            foundShoe.image=shoe.image
+             logAll()
+             store()
+
+
+       */
+            override fun update(shoe: ShoeModel) {
+                var foundShoe: ShoeModel? = shoes.find { p -> p.id == shoe.id }
+                if (foundShoe != null) {
+                    foundShoe.title = shoe.title
+                    foundShoe.description = shoe.description
+                    foundShoe.price = shoe.price
+                    foundShoe.size = shoe.size
+                    foundShoe.shoecolor = shoe.shoecolor
+                    //added image update to store
+                    foundShoe.image = shoe.image
+                    logAll()
+                    store()
+
         }
     }
 
@@ -51,6 +68,9 @@ class ShoeMemStore : ShoeStore {
     @Throws(Exception::class)
     fun load() {
         shoes = serializer.read() as ArrayList<ShoeModel>
+        i("LOAD")
+        logAll()
+        lastId = shoes.maxOf {it.id }+1
     }
 
     @Throws(Exception::class)
