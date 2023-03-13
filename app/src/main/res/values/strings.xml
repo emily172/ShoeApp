@@ -29,6 +29,9 @@
     //add select shoe image
     <string name="select_shoe_image">Select shoe image</string>
 
+    // change the shoe image
+    <string name="change_shoe_image">Change shoe image</string>
+
 
 </resources>
 
