@@ -28,7 +28,7 @@ class ShoeMemStore : ShoeStore {
 
     }
 
-
+/*
     override fun update(shoe: ShoeModel) {
         var foundShoe: ShoeModel? = shoes.find { p -> p.id == shoe.id }
         if (foundShoe != null) {
@@ -37,11 +37,25 @@ class ShoeMemStore : ShoeStore {
             foundShoe.price = shoe.price
             foundShoe.size = shoe.size
             foundShoe.shoecolor = shoe.shoecolor
-            //added image update to store
             foundShoe.image=shoe.image
-            // store()
-            logAll()
-            store()
+             logAll()
+             store()
+
+
+       */
+            override fun update(shoe: ShoeModel) {
+                var foundShoe: ShoeModel? = shoes.find { p -> p.id == shoe.id }
+                if (foundShoe != null) {
+                    foundShoe.title = shoe.title
+                    foundShoe.description = shoe.description
+                    foundShoe.price = shoe.price
+                    foundShoe.size = shoe.size
+                    foundShoe.shoecolor = shoe.shoecolor
+                    //added image update to store
+                    foundShoe.image = shoe.image
+                    logAll()
+                    store()
+
         }
     }
 
